@@ -1,0 +1,5 @@
+*.txt
+*.enc
+*.dec
+*.pdf
+__pycache__
