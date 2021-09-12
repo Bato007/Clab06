@@ -15,7 +15,7 @@ def register(username, password):
     hashed = b64encode(temp).decode('utf-8')
 
     # Se escriben en el txt
-    line = ' '.join([username, salt, hashed])
+    line = ' '.join([username, salt, hashed]) + '\n'
     file = open(txtname, 'a')
     file.write(line)
     file.close()
