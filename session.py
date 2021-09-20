@@ -3,7 +3,30 @@ from base64 import b64encode
 
 txtname = 'lab6.txt'
 def login(username, password):
-    return True
+    db = open(txtname, 'r')
+    dbLines = db.readlines()
+    
+    for line in dbLines:
+        # Obtenemos la informacion del usuario
+        actualUsername, checkSalt, checkPassword = line.split(" ")
+        checkPassword = checkPassword.replace("\n", "")
+
+        # Si el usuario actual esta en la base de datos
+        if (username in actualUsername):
+            # Obtengo la contraseña encriptada
+            hash = hashlib.sha256()
+            hash.update(bytes(password, 'utf-8'))
+            hash.update(bytes(checkSalt, 'utf-8'))
+            temp = hash.digest()
+            hashed = b64encode(temp).decode('utf-8')
+
+            if (hashed == checkPassword):
+                return True
+            else:
+                return False
+    
+    # Si el usuario no existe
+    return False
 
 def register(username, password):
     salt = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=13))
