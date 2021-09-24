@@ -52,7 +52,8 @@ def printRes(nombre, res):
     print('-'*100)
     return ''
 
-
+"""
 print(printRes('sha256', sha256Res(b'quiero ir a dormir')))
 print(printRes('sha512', sha512Res(b'quiero ir a dormir')))
 print(printRes('blake2b', blake2bRes(b'quiero ir a dormir', 64)))
+"""
